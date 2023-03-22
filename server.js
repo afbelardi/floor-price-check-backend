@@ -5,6 +5,7 @@ const PORT = process.env.PORT || 8000;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const searchRouter = require("./puppeteer");
 
 app.use(cors());
 
@@ -23,6 +24,8 @@ mongoose.connect(MONGODB_URI, {
 db.on('open', () => {
     console.log('MongoDB is connected')
 });
+
+app.use('/', searchRouter);
 
 
 
