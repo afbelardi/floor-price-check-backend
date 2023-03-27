@@ -12,9 +12,10 @@ searchRouter.post('/search', async (req, res) => {
             headless: false
         });
         const page = await browser.newPage();
+        await page.setViewport({width: 1920, height: 1080});
+
         await page.goto('https://www.opensea.io/');
         await page.focus(searchElement);
-        await page.$eval(searchElement, el => el.value = '');
         await page.type(searchElement, searchTerm);
         // await Promise.all([
         //     page.waitForNavigation(),
@@ -23,8 +24,12 @@ searchRouter.post('/search', async (req, res) => {
 
         await new Promise(r => setTimeout(r, 4000));
 
-        await page.waitForSelector('.sc-29427738-0.dVNeWL');
-        await page.click('.sc-29427738-0.dVNeWL')
+        const collectionElement = 'a[class*="sc-1f719d57-0 fKAlPV sc-29427738-0 sc-630fc9ab-0 sc-a8df1259-0 hyHTWC jSPhMX eGZhwM"]'
+        const link = await page.$(collectionElement)
+        
+
+        await link.click();
+        
 
     
     } catch (error) {
