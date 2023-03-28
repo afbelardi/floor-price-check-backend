@@ -22,19 +22,26 @@ searchRouter.post('/search', async (req, res) => {
         //     page.keyboard.press('Enter'),
         // ]);
 
-        await new Promise(r => setTimeout(r, 2000));
+        await new Promise(r => setTimeout(r, 4000));
 
         const collectionElement = 'a[class*="sc-1f719d57-0 fKAlPV sc-29427738-0 sc-630fc9ab-0 sc-a8df1259-0 hyHTWC jSPhMX eGZhwM"]'
         const link = await page.$(collectionElement);
         await link.click();
 
-        await new Promise(r => setTimeout(r, 2000));
+        await new Promise(r => setTimeout(r, 4000));
+
+        const h1Element = await page.$('h1');
+        const h1Text = await page.evaluate(h1 => h1.textContent, h1Element);
+       
 
         const firstChild = await page.$$('.sc-29427738-0.sc-d58c749b-1.ILliQ.jsHA-dC');
         const firstChildTest = firstChild[1]
         const firstChildText = await (await firstChildTest.getProperty('textContent')).jsonValue();
         const [value, currency] = firstChildText.split(/([a-zA-Z]+)/);
-        const result = `${value} ${currency}`
+        const result = {
+           floorPrice: `${value} ${currency}`,
+           collectionName: h1Text
+        }
 
         res.send(result)
 
