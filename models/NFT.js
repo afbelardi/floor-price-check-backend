@@ -11,7 +11,7 @@ const nftSchema = mongoose.Schema({
         required: true
     },
     targetFloorPrice: {
-        type: Number,
+        type: String,
         required: true
     }
 });

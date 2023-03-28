@@ -26,6 +26,7 @@ db.on('open', () => {
 });
 
 app.use('/', searchRouter);
+app.use('/api/nft', require('./controllers/nfts'));
 
 
 

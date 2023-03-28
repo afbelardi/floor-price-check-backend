@@ -8,6 +8,19 @@ const app = express();
 
 // CREATE
 
+nftRouter.post('/', async (req, res) => {
+    try {
+        const newNFT = await NFT.create(req.body)
+
+        res
+            .status(200)
+            .send(newNFT)
+    } catch (error) {
+        res
+            .status(400)
+            .json(error)
+    }
+})
 
 
 
@@ -25,3 +38,6 @@ const app = express();
 
 
 //DESTROY
+
+
+module.exports = nftRouter;
