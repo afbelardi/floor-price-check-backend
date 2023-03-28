@@ -30,7 +30,6 @@ searchRouter.post('/search', async (req, res) => {
         const h1Element = await page.$('h1');
         const h1Text = await page.evaluate(h1 => h1.textContent, h1Element);
        
-
         const firstChild = await page.$$('.sc-29427738-0.sc-d58c749b-1.ILliQ.jsHA-dC');
         const firstChildTest = firstChild[1]
         const firstChildText = await (await firstChildTest.getProperty('textContent')).jsonValue();
