@@ -17,10 +17,7 @@ searchRouter.post('/search', async (req, res) => {
         await page.goto('https://www.opensea.io/');
         await page.focus(searchElement);
         await page.type(searchElement, searchTerm);
-        // await Promise.all([
-        //     page.waitForNavigation(),
-        //     page.keyboard.press('Enter'),
-        // ]);
+  
 
         await new Promise(r => setTimeout(r, 4000));
 
@@ -44,15 +41,11 @@ searchRouter.post('/search', async (req, res) => {
         }
 
         res.send(result)
-
-
         await browser.close();
     
     } catch (error) {
         console.error(error)
     }
-    
-    
 })
 
 module.exports = searchRouter;
