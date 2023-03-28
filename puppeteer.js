@@ -25,12 +25,31 @@ searchRouter.post('/search', async (req, res) => {
         await new Promise(r => setTimeout(r, 4000));
 
         const collectionElement = 'a[class*="sc-1f719d57-0 fKAlPV sc-29427738-0 sc-630fc9ab-0 sc-a8df1259-0 hyHTWC jSPhMX eGZhwM"]'
-        const link = await page.$(collectionElement)
-        
-
+        const link = await page.$(collectionElement);
         await link.click();
-        
 
+        await new Promise(r => setTimeout(r, 4000));
+
+        const firstChild = await page.$$('.sc-29427738-0.sc-d58c749b-1.ILliQ.jsHA-dC');
+        const firstChildTest = firstChild[1]
+        const firstChildText = await (await firstChildTest.getProperty('textContent')).jsonValue();
+         const secondChild = await page.$('.sc-29427738-0.jXdVGG');
+        const secondChildText = await (await secondChild.getProperty('textContent')).jsonValue();
+
+            console.log(firstChildText); // Number
+            console.log(secondChildText); // ETH
+
+        const result = await page.evaluate(() => {
+            const divElement = document.querySelector('.sc-29427738-0 sc-630fc9ab-0 dJYDEb jSPhMX');
+            const firstChildText = divElement.children[0].textContent;
+            const secondChildText = divElement.children[1].textContent;
+        
+            return { firstChildText, secondChildText };
+          });
+        
+          console.log(result);
+   
+        
     
     } catch (error) {
         console.error(error)
