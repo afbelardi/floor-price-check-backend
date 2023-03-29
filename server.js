@@ -6,6 +6,11 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const searchRouter = require("./puppeteer");
+const cron = require('node-cron');
+const axios = require('axios');
+const accountSid = process.env.TWILIO_SID;
+const authToken = process.env.TWILIO_AUTH;
+const client = require('twilio')(accountSid, authToken);
 
 app.use(cors());
 
@@ -28,6 +33,25 @@ db.on('open', () => {
 app.use('/', searchRouter);
 app.use('/api/nft', require('./controllers/nfts'));
 
+
+cron.schedule('*/1 * * * *', async () => {
+    // try {
+    //   const response = await axios.get('https://example.com/api/data');
+    //   if (response.data.criteria === 'met') {
+        client.messages
+          .create({
+             body: 'Criteria met!',
+             from: '+18442077408',
+             to: '+17576184051'
+           })
+    //       .then(message => console.log(message.sid))
+    //       .catch(error => console.log(error));
+    //   }
+    
+    // } catch (error) {
+    //   console.error(error);
+    // }
+  });
 
 
 app.use(express.json());
