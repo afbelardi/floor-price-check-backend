@@ -9,7 +9,7 @@ searchRouter.post('/search', async (req, res) => {
         const searchElement = 'div.NavSearch--mobile-search-input input[role="searchbox"]';
     
         const browser = await puppeteer.launch({
-            headless: false
+                headless: false
         });
         const page = await browser.newPage();
         await page.setViewport({width: 1920, height: 1080});
@@ -34,9 +34,17 @@ searchRouter.post('/search', async (req, res) => {
         const firstChildTest = firstChild[1]
         const firstChildText = await (await firstChildTest.getProperty('textContent')).jsonValue();
         const [value, currency] = firstChildText.split(/([a-zA-Z]+)/);
+
+
+        const nftImage = await page.$eval('img.sc-6d5b054-0.jhsaBJ[src]', img => img.src);
+
+        console.log(nftImage)
+
+
         const result = {
            floorPrice: `${value} ${currency}`,
-           collectionName: h1Text
+           collectionName: h1Text,
+           nftImage: nftImage
         }
 
         res.send(result)

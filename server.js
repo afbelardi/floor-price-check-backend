@@ -34,24 +34,24 @@ app.use('/', searchRouter);
 app.use('/api/nft', require('./controllers/nfts'));
 
 
-cron.schedule('*/1 * * * *', async () => {
-    // try {
-    //   const response = await axios.get('https://example.com/api/data');
-    //   if (response.data.criteria === 'met') {
-        client.messages
-          .create({
-             body: 'Criteria met!',
-             from: '+18442077408',
-             to: '+17576184051'
-           })
-    //       .then(message => console.log(message.sid))
-    //       .catch(error => console.log(error));
-    //   }
+// cron.schedule('*/1 * * * *', async () => {
+//     // try {
+//     //   const response = await axios.get('https://example.com/api/data');
+//     //   if (response.data.criteria === 'met') {
+//         client.messages
+//           .create({
+//              body: 'Criteria met!',
+//              from: '+18442077408',
+//              to: '+17576184051'
+//            })
+//     //       .then(message => console.log(message.sid))
+//     //       .catch(error => console.log(error));
+//     //   }
     
-    // } catch (error) {
-    //   console.error(error);
-    // }
-  });
+//     // } catch (error) {
+//     //   console.error(error);
+//     // }
+//   });
 
 
 app.use(express.json());
