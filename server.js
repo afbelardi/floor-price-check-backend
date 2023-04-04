@@ -33,7 +33,7 @@ db.on('open', () => {
     console.log('MongoDB is connected')
 });
 
-app.use('/', searchRouter);
+app.use('/api', require('./puppeteer'));
 app.use('/api/nft', require('./controllers/nfts'));
 
 
