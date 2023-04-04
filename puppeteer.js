@@ -6,6 +6,7 @@ const searchRouter = express.Router();
 
 
 searchRouter.post('/search', async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://floor-price-frontend.herokuapp.com/');
       try {
         const searchTerm = req.body.searchTerm;
 
