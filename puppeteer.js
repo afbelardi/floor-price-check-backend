@@ -13,7 +13,6 @@ searchRouter.post('/search', async (req, res) => {
     const browser = await puppeteer.launch({
         args: [
             '--no-sandbox', 
-            '--disable-web-security',
             '--disable-setuid-sandbox'
         ],
         headless: true
