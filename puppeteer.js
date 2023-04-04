@@ -5,7 +5,7 @@ const searchRouter = express.Router();
 
 
 
-searchRouter.post('/search', async (req, res) => {
+searchRouter.post('search', async (req, res) => {
       try {
         const searchTerm = req.body.searchTerm;
 
