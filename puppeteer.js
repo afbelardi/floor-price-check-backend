@@ -4,7 +4,9 @@ const cors = require('cors');
 const searchRouter = express.Router();
 
 
-searchRouter.use(cors());
+searchRouter.use(cors({
+    origin: ['http://localhost:3000']
+}));
 searchRouter.post('/search', async (req, res) => {
       try {
         const searchTerm = req.body.searchTerm;
