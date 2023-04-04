@@ -11,7 +11,7 @@ searchRouter.post('/search', async (req, res) => {
     const searchElement = 'div.NavSearch--mobile-search-input input[role="searchbox"]';
     
     const browser = await puppeteer.launch({
-        args: ['--headless', '--disable-web-security', '--no-sandbox', '--disable-setuid-sandbox'],
+        args: ['--headless', '--no-sandbox', '--disable-setuid-sandbox'],
     });
     const page = await browser.newPage();
     await page.setViewport({width: 1920, height: 1080});
@@ -53,7 +53,7 @@ searchRouter.post('/search', async (req, res) => {
     }
     res.set('Access-Control-Allow-Origin', '*');
     res.set('Access-Control-Allow-Headers', 'Content-Type');
-    
+
     res.send(result)
     await browser.close();      
  
