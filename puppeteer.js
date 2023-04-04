@@ -14,10 +14,9 @@ searchRouter.post('/search', async (req, res) => {
         args: [
             '--no-sandbox', 
             '--disable-web-security',
-            '--disable-features=IsolateOrigins',
-            '--disable-site-isolation-trials'
+            '--disable-setuid-sandbox'
         ],
-        headless: false
+        headless: true
     });
     const page = await browser.newPage();
     await page.setViewport({width: 1920, height: 1080});
