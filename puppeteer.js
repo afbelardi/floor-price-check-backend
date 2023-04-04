@@ -1,7 +1,10 @@
 const puppeteer = require('puppeteer');
 const express = require('express');
+const cors = require('cors');
 const searchRouter = express.Router();
 
+
+searchRouter.use(cors());
 searchRouter.post('/search', async (req, res) => {
       try {
         const searchTerm = req.body.searchTerm;
