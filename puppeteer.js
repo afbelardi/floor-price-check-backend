@@ -4,9 +4,7 @@ const cors = require('cors');
 const searchRouter = express.Router();
 
 
-searchRouter.use(cors({
-    origin: ['http://localhost:3000']
-}));
+
 searchRouter.post('/search', async (req, res) => {
       try {
         const searchTerm = req.body.searchTerm;
@@ -15,7 +13,7 @@ searchRouter.post('/search', async (req, res) => {
     const searchElement = 'div.NavSearch--mobile-search-input input[role="searchbox"]';
     
     const browser = await puppeteer.launch({
-        headless: true
+        args: ['--headless', '--disable-web-security'],
     });
     const page = await browser.newPage();
     await page.setViewport({width: 1920, height: 1080});
