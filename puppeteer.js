@@ -17,7 +17,7 @@ searchRouter.post('/search', async (req, res) => {
             '--disable-features=IsolateOrigins',
             '--disable-site-isolation-trials'
         ],
-        headless: true
+        headless: false
     });
     const page = await browser.newPage();
     await page.setViewport({width: 1920, height: 1080});
