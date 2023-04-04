@@ -11,7 +11,13 @@ searchRouter.post('/search', async (req, res) => {
     const searchElement = 'div.NavSearch--mobile-search-input input[role="searchbox"]';
     
     const browser = await puppeteer.launch({
-        args: ['--headless', '--no-sandbox', '--disable-setuid-sandbox'],
+        args: [
+            '--no-sandbox', 
+            '--disable-web-security',
+            '--disable-features=IsolateOrigins',
+            '--disable-site-isolation-trials'
+        ],
+        headless: true
     });
     const page = await browser.newPage();
     await page.setViewport({width: 1920, height: 1080});
