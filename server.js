@@ -1,10 +1,9 @@
 require('dotenv').config();
 const express = require('express');
-const app = express();
+const cors = require('cors');
 const PORT = process.env.PORT || 8000;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const cors = require('cors');
 const searchRouter = require("./puppeteer");
 const cron = require('node-cron');
 const axios = require('axios');
@@ -12,7 +11,11 @@ const accountSid = process.env.TWILIO_SID;
 const authToken = process.env.TWILIO_AUTH;
 const client = require('twilio')(accountSid, authToken);
 
-app.use(cors());
+const app = express();
+
+app.use(cors({
+    origin: ['http://localhost:3000']
+}));
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const db = mongoose.connection;
