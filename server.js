@@ -13,11 +13,8 @@ const client = require('twilio')(accountSid, authToken);
 
 const app = express();
 
-const corsOptions = {
-    origin: "http://localhost:3000"
-}
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const db = mongoose.connection;
