@@ -14,7 +14,6 @@ searchRouter.post('/search', async (req, res) => {
         args: [
             '--no-sandbox', 
             '--disable-setuid-sandbox',
-            '--disable-web-security',
         ],
         headless: true
     });
