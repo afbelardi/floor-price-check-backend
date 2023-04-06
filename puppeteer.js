@@ -15,6 +15,7 @@ searchRouter.post('/search', async (req, res) => {
             '--no-sandbox', 
             '--disable-setuid-sandbox',
         ],
+        executablePath: process.env.GOOGLE_CHROME_BIN,
         headless: true
     });
     const page = await browser.newPage();
