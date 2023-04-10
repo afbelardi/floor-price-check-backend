@@ -22,9 +22,9 @@ searchRouter.post('/search', async (req, res) => {
     await page.goto('https://www.opensea.io/');
     await page.screenshot();
     console.log('made it this far')
-    // await page.waitForSelector(searchElement);
-    // await page.focus(searchElement);
-    // await page.type(searchElement, searchTerm);
+    await page.waitForSelector(searchElement);
+    await page.focus(searchElement);
+    await page.type(searchElement, searchTerm);
 
 
     // // await new Promise(r => setTimeout(r, 4000));
