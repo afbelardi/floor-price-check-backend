@@ -15,7 +15,6 @@ searchRouter.post('/search', async (req, res) => {
         args: [
             '--no-sandbox', 
         ],
-        headless: false
     });
     const page = await browser.newPage();
     await page.setViewport({width: 1920, height: 1080});
