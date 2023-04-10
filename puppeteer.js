@@ -15,6 +15,7 @@ searchRouter.post('/search', async (req, res) => {
         args: [
             '--no-sandbox', 
         ],
+        headless: false
     });
     const page = await browser.newPage();
     await page.setViewport({width: 1920, height: 1080});
@@ -22,6 +23,7 @@ searchRouter.post('/search', async (req, res) => {
     await page.goto('https://www.opensea.io/');
     await page.screenshot();
     console.log('made it this far')
+    await page.waitForNavigation();
     await page.waitForSelector(searchElement);
     await page.focus(searchElement);
     await page.type(searchElement, searchTerm);
