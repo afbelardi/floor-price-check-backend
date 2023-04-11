@@ -2,14 +2,18 @@ const puppeteer = require('puppeteer');
 const express = require('express');
 const cors = require('cors');
 const searchRouter = express.Router();
-
+require('dotenv').config();
 
 
 searchRouter.post('/search', async (req, res) => {
     const browser = await puppeteer.launch({
         args: [
+            '--disable-setuid-sandbox',
             '--no-sandbox', 
+            '--single-process',
+            '--no-zygote',
         ],
+        executablePath: proces.env.NODE_ENV === "production" ? process.env.PUPPETEER_EXECUTABLE_PATH : puppeteer.executablePath(),
     });
     try {
         const searchTerm = req.body.searchTerm;
