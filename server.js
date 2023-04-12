@@ -32,6 +32,10 @@ db.on('open', () => {
     console.log('MongoDB is connected')
 });
 
+app.get('/', (req, res) => {
+    res.send('working')
+})
+
 app.use('/api', require('./puppeteer'));
 app.use('/api/nft', require('./controllers/nfts'));
 
