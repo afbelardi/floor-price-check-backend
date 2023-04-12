@@ -5,6 +5,10 @@ const searchRouter = express.Router();
 require('dotenv').config();
 
 
+searchRouter.get('/search', async (req, res ) => {
+    res.send('search route working')
+})
+
 searchRouter.post('/search', async (req, res) => {
     const browser = await puppeteer.launch({
         args: [
