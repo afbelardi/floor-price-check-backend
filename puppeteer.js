@@ -33,8 +33,8 @@ searchRouter.post('/search', async (req, res) => {
     console.log('made it this far')
     await page.waitForSelector(searchElement);
     console.log('searchElement found')
-    // await page.focus(searchElement);
-    // await page.type(searchElement, searchTerm);
+    await page.focus(searchElement);
+    await page.type(searchElement, searchTerm);
 
 
     // // await new Promise(r => setTimeout(r, 4000));
