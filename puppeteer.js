@@ -39,35 +39,35 @@ searchRouter.post('/search', async (req, res) => {
 
     // // await new Promise(r => setTimeout(r, 4000));
 
-    // const collectionElement = 'a[class*="sc-1f719d57-0 fKAlPV sc-29427738-0 sc-630fc9ab-0 sc-396bc2e1-0 hyHTWC jSPhMX gslsVL sc-581b878c-0 jPMaKh"]'
-    // await page.waitForSelector(collectionElement);
-    // const link = await page.$(collectionElement);
+    const collectionElement = 'a[class*="sc-1f719d57-0 fKAlPV sc-29427738-0 sc-630fc9ab-0 sc-396bc2e1-0 hyHTWC jSPhMX gslsVL sc-581b878c-0 jPMaKh"]'
+    await page.waitForSelector(collectionElement);
+    const link = await page.$(collectionElement);
   
-    // await link.click();
+    await link.click();
 
-    // await new Promise(r => setTimeout(r, 1000));
-    // await page.waitForSelector('.sc-29427738-0.sc-d58c749b-1.ILliQ.jsHA-dC')
+    await new Promise(r => setTimeout(r, 1000));
+    await page.waitForSelector('.sc-29427738-0.sc-d58c749b-1.ILliQ.jsHA-dC')
 
-    // const h1Element = await page.$('h1');
-    // const h1Text = await page.evaluate(h1 => h1.textContent, h1Element);
+    const h1Element = await page.$('h1');
+    const h1Text = await page.evaluate(h1 => h1.textContent, h1Element);
    
     
-    // const firstChild = await page.$$('.sc-29427738-0.sc-d58c749b-1.ILliQ.jsHA-dC');
-    // const firstChildTest = firstChild[1]
-    // const firstChildText = await (await firstChildTest.getProperty('textContent')).jsonValue();
-    // const [value, currency] = firstChildText.split(/([a-zA-Z]+)/);
+    const firstChild = await page.$$('.sc-29427738-0.sc-d58c749b-1.ILliQ.jsHA-dC');
+    const firstChildTest = firstChild[1]
+    const firstChildText = await (await firstChildTest.getProperty('textContent')).jsonValue();
+    const [value, currency] = firstChildText.split(/([a-zA-Z]+)/);
 
 
-    // const nftImage = await page.$eval('img.sc-6d5b054-0.jhsaBJ[src]', img => img.src);
+    const nftImage = await page.$eval('img.sc-6d5b054-0.jhsaBJ[src]', img => img.src);
 
 
-    // const result = {
-    //    floorPrice: `${value} ${currency}`,
-    //    collectionName: h1Text,
-    //    nftImage: nftImage
-    // }
+    const result = {
+       floorPrice: `${value} ${currency}`,
+       collectionName: h1Text,
+       nftImage: nftImage
+    }
 
-    // res.send(result)
+    res.send(result)
     
     } catch (error) {
         console.error(error)
