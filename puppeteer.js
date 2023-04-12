@@ -17,7 +17,7 @@ searchRouter.post('/search', async (req, res) => {
             '--single-process',
             '--no-zygote',
         ],
-        executablePath: proces.env.NODE_ENV === "production" ? process.env.PUPPETEER_EXECUTABLE_PATH : puppeteer.executablePath(),
+        executablePath: process.env.NODE_ENV === "production" ? process.env.PUPPETEER_EXECUTABLE_PATH : puppeteer.executablePath(),
     });
     try {
         const searchTerm = req.body.searchTerm;
