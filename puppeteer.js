@@ -41,6 +41,7 @@ searchRouter.post('/search', async (req, res) => {
 
     const collectionElement = 'a[class*="sc-1f719d57-0 fKAlPV sc-29427738-0 sc-630fc9ab-0 sc-396bc2e1-0 hyHTWC jSPhMX gslsVL sc-581b878c-0 jPMaKh"]'
     await page.waitForSelector(collectionElement);
+    console.log('searchElement found')
     const link = await page.$(collectionElement);
   
     await link.click();
