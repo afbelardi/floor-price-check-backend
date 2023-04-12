@@ -17,7 +17,7 @@ searchRouter.post('/search', async (req, res) => {
             '--single-process',
             '--no-zygote',
         ],
-        headless: false,
+        // headless: false
         executablePath: process.env.NODE_ENV === "production" ? process.env.PUPPETEER_EXECUTABLE_PATH : puppeteer.executablePath(),
     });
     try {
@@ -28,9 +28,8 @@ searchRouter.post('/search', async (req, res) => {
 
     const page = await browser.newPage();
     await page.setViewport({width: 1920, height: 1080});
-    // await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36')
-    await page.goto('https://www.opensea.io/', { timeout: 0 });
-    await page.screenshot();
+    await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36')
+    page.goto('https://www.opensea.io/', { timeout: 0 });
     console.log('made it this far')
     await page.waitForSelector(searchElement);
     await page.focus(searchElement);
